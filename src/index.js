@@ -2,15 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import CryptoContext from "./CryptoContext";
+// import CryptoContext from "./CryptoContext";
+import { Provider } from "react-redux";
+import store from "./store/store"; // Ensure the correct path to your store
 import "react-alice-carousel/lib/alice-carousel.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <CryptoContext>
+    <Provider store={store}>
       <App />
-    </CryptoContext>
+    </Provider>
   </React.StrictMode>
 );
 

@@ -9,7 +9,9 @@ import {
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
-import { CryptoState } from "../CryptoContext";
+// import { CryptoState } from "../CryptoContext";
+import { useSelector, useDispatch } from "react-redux";
+import { setCurrency } from "../store/slices/cryptoSlice";
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -23,7 +25,10 @@ const useStyles = makeStyles(() => ({
 const Header = () => {
   const classes = useStyles(); // Correctly use the hook
   const navigate = useNavigate();
-  const { currency, setCurrency } = CryptoState();
+  // const { currency, setCurrency } = CryptoState();
+  const currency = useSelector((state) => state.crypto.currency);
+  // const symbol = useSelector((state) => state.crypto.symbol);
+  const dispatch = useDispatch();
   console.log(currency);
   return (
     <div>
@@ -40,7 +45,7 @@ const Header = () => {
             <Select
               variant="outlined"
               value={currency}
-              onChange={(e) => setCurrency(e.target.value)}
+              onChange={(e) => dispatch(setCurrency(e.target.value))}
               style={{
                 width: 100,
                 height: 40,

@@ -1,7 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { CryptoState } from "../CryptoContext";
+// import { CryptoState } from "../CryptoContext";
+import { useSelector } from "react-redux";
 import { SingleCoin } from "../config/api";
 import axios from "axios";
 import { makeStyles } from "@mui/styles";
@@ -66,7 +67,9 @@ const Coins = () => {
 
   const { id } = useParams();
   const [coin, setCoin] = useState();
-  const { currency, symbol } = CryptoState();
+  // const { currency, symbol } = CryptoState();
+  const currency = useSelector((state) => state.crypto.currency);
+  const symbol = useSelector((state) => state.crypto.symbol);
   const fetchCoin = async () => {
     const { data } = await axios.get(SingleCoin(id));
     setCoin(data);

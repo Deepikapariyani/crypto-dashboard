@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { HistoricalChart } from "../config/api";
-import { CryptoState } from "../CryptoContext";
+// import { CryptoState } from "../CryptoContext";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { makeStyles } from "@mui/styles";
@@ -60,7 +61,9 @@ const useStyles = makeStyles((theme) => ({
 const CoinInfo = ({ coin }) => {
   const [historicalData, setHistoricalData] = useState();
   const [days, setDays] = useState(1);
-  const { currency, symbol } = CryptoState();
+  // const { currency, symbol } = CryptoState();
+  const currency = useSelector((state) => state.crypto.currency);
+  const symbol = useSelector((state) => state.crypto.symbol);
   const [flag, setFlag] = useState(false);
 
   const fetchsetHistoricalData = async () => {
