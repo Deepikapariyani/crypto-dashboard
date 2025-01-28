@@ -40,7 +40,7 @@ const Banner = () => {
             }}
             variant="h2"
           >
-            Crypto Hunter
+            Crypto Navigator
           </Typography>
           <Typography
             style={{
