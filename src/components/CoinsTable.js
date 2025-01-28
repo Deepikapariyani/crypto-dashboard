@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { CoinList } from "../config/api";
-import { CryptoState } from "../CryptoContext";
-
+// import { CryptoState } from "../CryptoContext";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import { makeStyles } from "@mui/styles";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -53,7 +53,9 @@ const CoinsTable = () => {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState();
-  const { currency, symbol } = CryptoState();
+  // const { currency, symbol } = CryptoState();
+  const currency = useSelector((state) => state.crypto.currency);
+  const symbol = useSelector((state) => state.crypto.symbol);
   const [page, setPage] = useState(1);
 
   const fetchCoins = async () => {
