@@ -6,7 +6,7 @@ import { CryptoState } from "../../CryptoContext";
 import { useState, useEffect } from "react";
 import AliceCarousel from "react-alice-carousel";
 import { Link } from "react-router-dom";
-import { X } from "@mui/icons-material";
+//import { X } from "@mui/icons-material";
 
 const useStyles = makeStyles(() => ({
   Carousel: {
