@@ -2,7 +2,8 @@ import React from "react";
 import { makeStyles } from "@mui/styles";
 import { TrendingCoins } from "../../config/api";
 import axios from "axios";
-import { CryptoState } from "../../CryptoContext";
+// import { CryptoState } from "../../CryptoContext";
+import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import AliceCarousel from "react-alice-carousel";
 import { Link } from "react-router-dom";
@@ -30,7 +31,9 @@ export function numberWithCommas(x) {
 }
 const Carousel = () => {
   const [trending, setTrending] = useState([]);
-  const { currency, symbol } = CryptoState();
+  // const { currency, symbol } = CryptoState();
+  const currency = useSelector((state) => state.crypto.currency);
+  const symbol = useSelector((state) => state.crypto.symbol);
   const classes = useStyles();
   const fetchTrendingCoins = async () => {
     const { data } = await axios.get(TrendingCoins(currency));
